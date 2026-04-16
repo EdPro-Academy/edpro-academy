@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edpro.academy/sitemap.xml
+
+# Disallow admin and private routes
+Disallow: /api/
+Disallow: /_next/

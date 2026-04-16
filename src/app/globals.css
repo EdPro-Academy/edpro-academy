@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CSS Custom Properties ===== */
+:root {
+  --edpro-dark: #015c8e;
+  --edpro-primary: #0374ac;
+  --edpro-light: #69cced;
+  --edpro-ink: #231f20;
+  --font-inter: "Inter", sans-serif;
+  --font-tajawal: "Tajawal", sans-serif;
+}
+
+/* ===== Base Styles ===== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-edpro-ink antialiased;
+    font-family: var(--font-inter);
+  }
+
+  [dir="rtl"] body,
+  [dir="rtl"] {
+    font-family: var(--font-tajawal);
+  }
+
+  [dir="rtl"] * {
+    font-family: var(--font-tajawal);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold leading-tight;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  * {
+    @apply box-border;
+  }
+}
+
+/* ===== Component Styles ===== */
+@layer components {
+  /* Sticky Header */
+  .nav-sticky {
+    @apply sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-nav;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           bg-edpro-primary text-white font-semibold text-sm
+           hover:bg-edpro-dark transition-all duration-200
+           shadow-sm hover:shadow-md active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           border-2 border-edpro-primary text-edpro-primary font-semibold text-sm
+           hover:bg-edpro-primary hover:text-white transition-all duration-200
+           active:scale-95;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+           border-2 border-white text-white font-semibold text-sm
+           hover:bg-white hover:text-edpro-primary transition-all duration-200
+           active:scale-95;
+  }
+
+  /* Program Cards */
+  .program-card {
+    @apply bg-white rounded-2xl shadow-card hover:shadow-card-hover
+           transition-all duration-300 overflow-hidden border border-edpro-border
+           flex flex-col;
+  }
+
+  .program-card:hover {
+    @apply -translate-y-1;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Title */
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-edpro-dark text-center;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-edpro-muted text-center max-w-2xl mx-auto mt-4;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-primary {
+    @apply badge bg-edpro-light/20 text-edpro-dark;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-700;
+  }
+
+  /* Disclosure Box */
+  .disclosure-box {
+    @apply bg-edpro-dark/5 border-s-4 border-edpro-primary rounded-lg p-4 text-sm text-edpro-ink leading-relaxed;
+  }
+
+  /* Partner Card */
+  .partner-card {
+    @apply bg-white rounded-2xl shadow-card p-8 flex flex-col items-center text-center
+           border border-edpro-border hover:shadow-card-hover transition-all duration-300;
+  }
+}
+
+/* ===== Utility Styles ===== */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-hero-gradient;
+  }
+
+  .bg-hero {
+    background: linear-gradient(135deg, #015c8e 0%, #0374ac 60%, #1a8fc4 100%);
+  }
+
+  /* RTL-aware utilities */
+  [dir="rtl"] .rtl-flip {
+    transform: scaleX(-1);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0374ac;
+  border-radius: 3px;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+  @apply fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm
+         flex items-center justify-center p-4;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl shadow-2xl w-full max-w-md p-8
+         animate-fade-in-up;
+}
